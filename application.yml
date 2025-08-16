@@ -1,0 +1,27 @@
+# application.yml - Add this content to your empty application.yml file
+
+general:
+  kafka-topic: midas-transactions
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+
+kafka:
+  bootstrap-servers: localhost:9092
+  consumer:
+    group-id: midas-consumer-group
+    auto-offset-reset: earliest
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.apache.kafka.common.serialization.StringSerializer
